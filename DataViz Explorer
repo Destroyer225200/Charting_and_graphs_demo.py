@@ -1,0 +1,208 @@
+import numpy as np
+import pandas as pd
+from datetime import datetime, timedelta
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.gridspec import GridSpec
+
+import matplotlib.pyplot as plt
+
+# 1. Grafic Liniar
+x = [0, 1, 2, 3, 4, 5]
+y = [0, 1, 4, 9, 16, 25]
+plt.plot(x, y, label='Creștere pătratică', color='blue', marker='o')
+plt.title('Exemplu Grafic Matplotlib')
+plt.xlabel('Valori X')
+plt.ylabel('Valori Y')
+plt.legend()
+plt.savefig('grafic_exemplu.png')
+plt.show()
+
+# 2. Grafic cu Bare
+produse = ['Laptop', 'Telefon', 'Tableta', 'Televizor']
+vanzari = [50, 75, 30, 90]
+plt.figure()
+plt.bar(produse, vanzari, color='skyblue')
+plt.title('Vânzări Produse')
+plt.xlabel('Produse')
+plt.ylabel('Număr Vânzări')
+plt.show()
+
+# 3. Histogramă
+note = np.random.normal(loc=7, scale=1.5, size=500)
+plt.hist(note, bins=15, color='blue', alpha=0.8)
+plt.title('Distribuția Notelor Studenților')
+plt.xlabel('Interval Note')
+plt.ylabel('Număr Studenți')
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.show()
+
+# 4. Scatter Plot
+inaltimi = np.random.normal(loc=170, scale=10, size=100)
+greutati = np.random.normal(loc=70, scale=15, size=100)
+plt.scatter(inaltimi, greutati, color='blue', alpha=0.7)
+plt.title('Înălțimi vs Greutăți')
+plt.xlabel('Înălțime (cm)')
+plt.ylabel('Greutate (kg)')
+plt.grid(alpha=0.4, linestyle='--')
+plt.show()
+
+# 5. Pie Chart
+surse_energie = ['Solar', 'Eoliană', 'Nucleară', 'Combustibili Fosili']
+procente_energie = [15, 25, 30, 30]
+plt.pie(procente_energie, labels=surse_energie, autopct='%1.1f%%', startangle=140, colors=['yellow', 'skyblue', 'gray', 'brown'])
+plt.title('Procentajul Surse de Energie')
+plt.show()
+
+# 6. Anotări și Texte
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+plt.plot(x, y, label='y = x^2', color='green')
+plt.title('Grafic cu Anotări')
+plt.xlabel('Valori X')
+plt.ylabel('Valori Y')
+plt.text(3, 9, 'Punct important', fontsize=10, color='red')
+plt.annotate('Maxim local', xy=(4, 16), xytext=(2, 20), arrowprops=dict(facecolor='blue', shrink=0.05), fontsize=10)
+plt.legend()
+plt.show()
+
+# 7. Salvare Grafic PNG
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+plt.plot(x, y, label='y = x^2', color='blue')
+plt.title('Grafic PNG')
+plt.xlabel('Valori X')
+plt.ylabel('Valori Y')
+plt.legend()
+plt.savefig('grafic_liniar.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+# 8. Salvare Grafic Circular
+categorii = ['Laptop', 'Telefon', 'Tableta', 'Televizor']
+procente = [30, 40, 20, 10]
+plt.figure(figsize=(8, 6))
+plt.pie(procente, labels=categorii, autopct='%1.1f%%', startangle=90)
+plt.title('Cota de Piață')
+plt.savefig('grafic_circular.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+# 9. Salvare Grafic PDF
+produse = ['Laptop', 'Telefon', 'Tableta', 'Televizor']
+vanzari = [50, 75, 30, 90]
+plt.bar(produse, vanzari, color='green')
+plt.title('Vânzări Produse')
+plt.xlabel('Produse')
+plt.ylabel('Număr Vânzări')
+plt.savefig('grafic_bare.pdf', bbox_inches='tight')
+plt.show()
+
+# 10. Salvare Grafic SVG
+valori = np.random.randint(1, 100, 500)
+plt.hist(valori, bins=10, color='purple', alpha=0.7)
+plt.title('Distribuție Histogramă')
+plt.xlabel('Intervale')
+plt.ylabel('Frecvență')
+plt.savefig('histograma.svg', format='svg', bbox_inches='tight')
+plt.show()
+
+# 11. Subgrafice
+x = [1, 2, 3, 4]
+y = [1, 4, 9, 16]
+plt.subplot(1, 2, 1)
+plt.plot(x, y, label='Grafic Liniar')
+plt.title('Grafic Liniar')
+plt.legend()
+categorii = ['A', 'B', 'C', 'D']
+valori = [10, 15, 7, 12]
+plt.subplot(1, 2, 2)
+plt.bar(categorii, valori, color='orange', label='Grafic cu Bare')
+plt.title('Grafic cu Bare')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# 12. GridSpec
+fig = plt.figure(figsize=(8, 6))
+gs = GridSpec(2, 2, figure=fig)
+ax1 = fig.add_subplot(gs[0, 0])
+ax1.plot([1, 2, 3], [1, 4, 9], color='blue', label='Grafic 1')
+ax1.set_title('Grafic Liniar')
+ax1.legend()
+ax2 = fig.add_subplot(gs[0, 1])
+ax2.bar(['A', 'B', 'C'], [10, 20, 15], color='green', label='Grafic 2')
+ax2.set_title('Grafic cu Bare')
+ax2.legend()
+ax3 = fig.add_subplot(gs[1, 0])
+ax3.scatter([1, 2, 3], [5, 10, 15], color='purple', label='Grafic 3')
+ax3.set_title('Grafic cu Puncte')
+ax3.legend()
+ax4 = fig.add_subplot(gs[1, 1])
+ax4.pie([30, 40, 30], labels=['X', 'Y', 'Z'], autopct='%1.1f%%')
+ax4.set_title('Grafic Circular')
+plt.tight_layout()
+plt.show()
+
+# 13. Grafic 3D
+x = np.linspace(-5, 5, 50)
+y = np.linspace(-5, 5, 50)
+x, y = np.meshgrid(x, y)
+z = x**2 + y**2
+fig = plt.figure()
+ax = fig.add_subplot(projection='3d')
+ax.plot_surface(x, y, z, cmap='viridis')
+ax.set_title('Grafic 3D: z = x^2 + y^2')
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+plt.show()
+
+# 14. Grafic Date Timp
+zile = [datetime(2023, 11, 1) + timedelta(days=i) for i in range(7)]
+temperaturi = [10, 12, 15, 14, 13, 11, 9]
+plt.figure(figsize=(8, 5))
+plt.plot(zile, temperaturi, marker='o', label='Temperatură')
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d-%b'))
+plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+plt.title('Evoluția Temperaturii')
+plt.xlabel('Zile')
+plt.ylabel('Temperatură (°C)')
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# 15. Analiza Set de Date Real
+data = pd.DataFrame({
+    'Luna': ['Ianuarie', 'Ianuarie', 'Ianuarie', 'Februarie', 'Februarie', 'Februarie', 'Martie', 'Martie', 'Martie'],
+    'Produs': ['Laptop', 'Telefon', 'Tableta'] * 3,
+    'Vanzari': [50, 75, 30, 65, 85, 40, 70, 95, 50]
+})
+
+# Grafic cu Bare - Vânzări totale pe produs
+totale_pe_produs = data.groupby('Produs')['Vanzari'].sum()
+plt.figure(figsize=(8, 5))
+totale_pe_produs.plot(kind='bar', color=['blue', 'orange', 'green'], legend=False)
+plt.title('Vânzări Totale pe Produs')
+plt.xlabel('Produs')
+plt.ylabel('Total Vânzări')
+plt.savefig('grafic_bare_vanzari.png', dpi=300)
+plt.show()
+
+# Grafic Liniar - Evoluția vânzărilor în timp
+plt.figure(figsize=(8, 5))
+for produs in data['Produs'].unique():
+    subset = data[data['Produs'] == produs]
+    plt.plot(subset['Luna'], subset['Vanzari'], marker='o', label=produs)
+plt.title('Evoluția Vânzărilor pe Lună')
+plt.xlabel('Luna')
+plt.ylabel('Vânzări')
+plt.legend()
+plt.savefig('grafic_evolutie_vanzari.png', dpi=300)
+plt.show()
+
+# Grafic Circular - Distribuția vânzărilor în Martie
+vanzari_martie = data[data['Luna'] == 'Martie']
+plt.figure(figsize=(8, 5))
+plt.pie(vanzari_martie['Vanzari'], labels=vanzari_martie['Produs'], autopct='%1.1f%%', startangle=90, colors=['blue', 'orange', 'green'])
+plt.title('Distribuția Vânzărilor în Martie')
+plt.savefig('grafic_circular_martie.png', dpi=300)
+plt.show()
